@@ -15,7 +15,22 @@ class Game {
       this.rowCheck(i)
       this.columnCheck(i)
     }
+    this.diagonalCheck(0,4)
+    this.diagonalCheck(2,2)
   }
+
+  diagonalCheck(start,difference) {
+    var firstSquare = this.getSquareInfo(start)
+      for (var i = start; i <=(start+2*difference); i+=difference) {
+        var currentSquare = this.getSquareInfo(i)
+        if(currentSquare!=firstSquare||currentSquare==null) {
+          return;
+        }
+      }
+    this.gameOver = true;
+    this.winner = 'Winner is "'+firstSquare+'"';
+  };
+
 
   rowCheck(rowIndex) {
     var firstSquare = this.getSquareInfo(rowIndex*3)
@@ -26,8 +41,8 @@ class Game {
       }
     }
     this.gameOver = true;
-    this.winner = 'Winner is "'+firstSquare+'"'
-  }
+    this.winner = 'Winner is "'+firstSquare+'"';
+  };
 
   columnCheck(columnIndex) {
     var firstSquare = this.getSquareInfo(columnIndex)
@@ -36,9 +51,9 @@ class Game {
       if(currentSquare!=firstSquare||currentSquare==null) {
         return;
       }
-    }
+    };
     this.gameOver = true;
-    this.winner = 'Winner is "'+firstSquare+'"'
-  }
+    this.winner = 'Winner is "'+firstSquare+'"';
+  };
 
 }
